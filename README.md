@@ -1,12 +1,16 @@
 # Gianna Turismo
 
-Esta copia está integrada en Turismo Lavalleja: consultar el README de la raíz
-para ejecutar el sitio con su chat o desplegar ambos servicios con Docker Compose.
+Este repositorio contiene el backend de Gianna para Turismo Lavalleja. Sus variables
+son exclusivamente de runtime del backend; el frontend configura por separado
+`PUBLIC_GIANNA_API_BASE`. En el checkout integrado local, consultar el README de la
+raíz para ejecutar ambos servicios con Docker Compose.
 `HOST` conserva `127.0.0.1` por defecto; el contenedor usa `0.0.0.0` detrás de nginx.
-En Coolify usar `.env.example` (producción) y el Dockerfile de esta carpeta con
-contexto de construcción aquí, puerto 5000 y volumen persistente `/app/storage`.
+En Coolify usar `.env.example` (producción) y el Dockerfile de la raíz de este repo
+con contexto de construcción aquí, puerto 5000 y volumen persistente `/app/storage`.
 Configurar `CORS_ORIGINS`, `OLLAMA_HOST`, `OLLAMA_API_KEY` y `OLLAMA_MODEL` como
-variables runtime. No se requiere panel, MariaDB ni MinIO. El health check es
+variables runtime exclusivamente en el backend. `PUBLIC_GIANNA_API_BASE` es la
+única variable de URL de Gianna que se configura en el frontend. No se requiere panel,
+MariaDB ni MinIO. El health check es
 `/api/ready`; no verifica la autorización de la API key ni consume tokens.
 La web puede desplegarse aparte y acceder a la API por CORS.
 
